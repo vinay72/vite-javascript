@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Movement</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    #container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+    }
+    #image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: transform 0.5s ease-in-out;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <img id="image" src="https://www.wizard.financial/static/media/wizaart-img.56787174.gif" alt="Image">
+</div>
+<script>
+    const image = document.getElementById('image');
+    const container = document.getElementById('container');
+    const movementSpeed = 2; // Adjust movement speed here
+
+    container.addEventListener('click', (event) => {
+        const mouseX = event.clientX;
+        const containerCenterX = container.getBoundingClientRect().left + container.offsetWidth / 2;
+
+        if (mouseX > containerCenterX) {
+            moveRight();
+            image.style.transform = 'translate(-50%, -50%) scaleX(-1)';
+        } else {
+            moveLeft();
+            image.style.transform = 'translate(-50%, -50%) scaleX(1)';
+        }
+    });
+
+    function moveRight() {
+        const currentPosition = parseFloat(image.style.left) || 0;
+        const newPosition = currentPosition + movementSpeed;
+        image.style.left = newPosition + 'px';
+        if (newPosition < container.offsetWidth - image.width) {
+            requestAnimationFrame(moveRight);
+        }
+    }
+
+    function moveLeft() {
+        const currentPosition = parseFloat(image.style.left) || 0;
+        const newPosition = currentPosition - movementSpeed;
+        image.style.left = newPosition + 'px';
+        if (newPosition > 0) {
+            requestAnimationFrame(moveLeft);
+        }
+    }
+</script>
+</body>
+</html>
