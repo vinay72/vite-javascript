@@ -16,17 +16,21 @@
         height: 100vh;
     }
     #image {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        transition: transform 0.5s ease-in-out;
-    }
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.5s ease-in-out;
+    width: 150px; /* Adjust width as needed */
+    height: 150px; /* Adjust height as needed */
+}
+
 </style>
 </head>
 <body>
 <div id="container">
-    <img id="image" src="https://www.wizard.financial/static/media/wizaart-img.56787174.gif" alt="Image">
+  <img id="image" src="https://www.wizard.financial/static/media/wizaart-img.56787174.gif" alt="Image" width="150" height="150">
+
 </div>
 <script>
     const image = document.getElementById('image');
